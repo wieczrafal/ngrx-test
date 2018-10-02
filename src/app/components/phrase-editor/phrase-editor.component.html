@@ -1,0 +1,7 @@
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+  <label>
+    Phrase:
+    <input type="text" formControlName="phrase">
+  </label>
+  <button type="submit" [disabled]="!form.valid">{{editing ? 'Edit' : 'Add'}}</button>
+</form>

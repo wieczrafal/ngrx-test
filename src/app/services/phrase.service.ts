@@ -13,4 +13,8 @@ export class PhraseService {
         }
         return state;
     }
+
+    public static intercept(phrase: string) {
+        return phrase.split(',').map(x => x.trim());
+    }
 }

@@ -6,17 +6,21 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { phraseReducer } from './reducers/phrase.reducer';
 import { TextColsComponent } from './components/text-cols/text-cols.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { PhraseEditorComponent } from './components/phrase-editor/phrase-editor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TextColsComponent
+    TextColsComponent,
+    StatisticsComponent,
+    PhraseEditorComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     StoreModule.forRoot({
-      phrases: phraseReducer
+      phraseState: phraseReducer
     })
   ],
   providers: [],

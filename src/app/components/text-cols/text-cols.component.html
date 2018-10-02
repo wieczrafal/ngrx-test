@@ -1,13 +1,5 @@
-<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
-  <label>
-    Phrase:
-    <input type="text" formControlName="phrase">
-  </label>
-  <button type="submit" [disabled]="!form.valid">{{editing ? 'Edit' : 'Add'}}</button>
-</form>
-
-<div class="results">
-  <div *ngFor="let column of phrases | async; let columnIndex = index" class="column">
+<!--<div class="results">
+  <div *ngFor="let column of phrases; let columnIndex = index" class="column">
     <i (click)="deleteColumn(columnIndex)" class="delete">+</i>
     <div>
         <div *ngFor="let phrase of column; let phraseIndex = index" class="phrase">
@@ -17,4 +9,17 @@
         </div>
     </div>
   </div>
-</div>
+</div>-->
+
+<div class="results">
+    <div *ngFor="let column of phrases; let columnIndex = index" class="column">
+      <i (click)="deleteColumn(columnIndex)" class="delete">+</i>
+      <div>
+          <div *ngFor="let phrase of column; let phraseIndex = index" class="phrase">
+            <i *ngIf="columnIndex === 0" (click)="deleteRow(phraseIndex)" class="delete">+</i>
+            <i *ngIf="columnIndex === 0" (click)="editRow(phraseIndex)" class="edit">e</i>
+            <span>{{phrase}}</span>
+          </div>
+      </div>
+    </div>
+  </div>

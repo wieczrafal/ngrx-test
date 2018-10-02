@@ -1,3 +1,5 @@
+import { IPhraseState } from './phrase-state.interface';
+
 export interface IAppState {
-    readonly phrases: string[][];
+    readonly phraseState: IPhraseState;
 }

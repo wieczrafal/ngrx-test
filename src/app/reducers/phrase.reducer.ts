@@ -1,20 +1,27 @@
 import * as PhraseActions from './../actions/phrase.actions';
 import { PhraseService } from '../services/phrase.service';
+import { IPhraseState } from '../models/phrase-state.interface';
 
-// Section 2
-export function phraseReducer(state: string[][] = [], action: PhraseActions.Actions) {
+const defaultState: IPhraseState = {
+    phrases: []
+};
+
+export function phraseReducer(state: IPhraseState = defaultState, action: PhraseActions.Actions) {
+    state.phrases = state.phrases.slice(0);
+
     switch (action.type) {
         case PhraseActions.ADD_PHRASE:
-            return [...PhraseService.convert(action.payload, state)];
+            state.phrases.push(action.payload);
+            break;
         case PhraseActions.EDIT_PHRASE:
-            return [...PhraseService.convert(action.payload, state, action.index)];
+            state.phrases[action.index] = action.payload;
+            break;
         case PhraseActions.REMOVE_PHRASE:
-            state.forEach(column => column.splice(action.payload, 1));
-            return [...state];
+            state.phrases.splice(action.payload, 1);
+            break;
         case PhraseActions.REMOVE_COLUMN:
-            state.splice(action.payload, 1);
-            return [...state];
-        default:
-            return state;
+            state.phrases.forEach(column => column.splice(action.payload, 1));
     }
+
+    return state;
 }

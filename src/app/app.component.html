@@ -1,1 +1,5 @@
-<app-text-cols></app-text-cols>
+<app-phrase-editor></app-phrase-editor>
+<div *ngIf="phrasesState$ | async as phrasesState">
+    <app-text-cols [phrases]="phrasesState.phrases"></app-text-cols>
+    <app-statistics [phrases]="phrasesState.phrases"></app-statistics>
+</div>

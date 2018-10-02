@@ -8,13 +8,13 @@ export const REMOVE_COLUMN    = '[PHRASE] Remove Column';
 export class AddPhrase implements Action {
     readonly type = ADD_PHRASE;
 
-    constructor(public payload: string) {}
+    constructor(public payload: string[]) {}
 }
 
 export class EditPhrase implements Action {
     readonly type = EDIT_PHRASE;
 
-    constructor(public payload: string, public index: number) {}
+    constructor(public payload: string[], public index: number) {}
 }
 
 export class RemovePhrase implements Action {
