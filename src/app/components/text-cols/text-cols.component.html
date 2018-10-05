@@ -1,25 +1,10 @@
-<!--<div class="results">
-  <div *ngFor="let column of phrases; let columnIndex = index" class="column">
-    <i (click)="deleteColumn(columnIndex)" class="delete">+</i>
-    <div>
-        <div *ngFor="let phrase of column; let phraseIndex = index" class="phrase">
-          <i *ngIf="columnIndex === 0" (click)="deleteRow(phraseIndex)" class="delete">+</i>
-          <i *ngIf="columnIndex === 0" (click)="editRow(phraseIndex)" class="edit">e</i>
-          <span>{{phrase}}</span>
-        </div>
-    </div>
-  </div>
-</div>-->
-
 <div class="results">
-    <div *ngFor="let column of phrases; let columnIndex = index" class="column">
-      <i (click)="deleteColumn(columnIndex)" class="delete">+</i>
-      <div>
-          <div *ngFor="let phrase of column; let phraseIndex = index" class="phrase">
-            <i *ngIf="columnIndex === 0" (click)="deleteRow(phraseIndex)" class="delete">+</i>
-            <i *ngIf="columnIndex === 0" (click)="editRow(phraseIndex)" class="edit">e</i>
-            <span>{{phrase}}</span>
-          </div>
+    <div *ngFor="let row of rows; let rowIndex = index" class="row">
+      <i (click)="deleteRow.emit(rowIndex)" class="delete">+</i>
+      <i (click)="editRow.emit(rowIndex)" class="edit">e</i>
+      <div *ngFor="let phrase of fill(row); let phraseIndex = index" class="phrase">
+        <i *ngIf="rowIndex === 0" (click)="deleteColumn.emit(phraseIndex)" class="delete">+</i>
+        <span>{{phrase}}</span>
       </div>
     </div>
   </div>

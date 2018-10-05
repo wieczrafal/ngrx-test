@@ -3,4 +3,5 @@ export interface IStatistics {
     shortestWord: string;
     totalWords: number;
     totalColumns: number;
+    totalRows: number;
 }

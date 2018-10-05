@@ -1,16 +1,9 @@
 import {
   Component,
-  Input
+  EventEmitter,
+  Input,
+  Output
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators
-} from '@angular/forms';
-import { Store } from '@ngrx/store';
-
-import * as PhraseActions from '../../actions/phrase.actions';
-import { IAppState } from '../../models/app-state.interface';
 
 @Component({
   selector: 'app-text-cols',
@@ -18,26 +11,23 @@ import { IAppState } from '../../models/app-state.interface';
   styleUrls: ['./text-cols.component.scss']
 })
 export class TextColsComponent {
-  @Input() phrases: string[][];
-
-  constructor(
-    private _store: Store<IAppState>
-  ) { }
-
-  // public editRow(index: number): void {
-  //   const phrases = [];
-  //   this._currentPhrases.forEach(column => phrases.push(column[index]));
-  //   this.form.controls.phrase.setValue(phrases.join(', '));
-  //   this.editedRow = index;
-  // }
-
-  public deleteRow(index: number): void {
-    this._store.dispatch(new PhraseActions.RemovePhrase(index));
-    //if (this.editing) this.resetForm();
+  @Input() set phrases(rows: string[][]) {
+    this.rows = rows;
+    this.maxColumns = rows.reduce((p, c) => p > c.length ? p : c.length, 0);
   }
+  @Output() deleteRow = new EventEmitter<number>();
+  @Output() deleteColumn = new EventEmitter<number>();
+  @Output() editRow = new EventEmitter<number>();
 
-  public deleteColumn(index: number): void {
-    this._store.dispatch(new PhraseActions.RemoveColumn(index));
-    //if (this.editing) this.resetForm();
+  public rows: string[][];
+  public maxColumns: number = 0;
+
+  public fill(phrases: string[]): string[] {
+    if (phrases.length === this.maxColumns) return phrases;
+    const filledPhrases = phrases.slice();
+    const originalLength = phrases.length;
+    filledPhrases.length = this.maxColumns;
+    filledPhrases.fill(null, originalLength, this.maxColumns);
+    return filledPhrases;
   }
 }

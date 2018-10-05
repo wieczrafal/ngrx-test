@@ -1,53 +1,53 @@
 .results {
-    display: flex;
-    padding-left: 50px;
+    padding: 35px 0 0 70px;
 
-    .column {
-        flex-grow: 1;
-        max-width: 200px;
+    .row {
+        display: flex;
         text-align: center;
+        position: relative;
 
-        > div {
+        .phrase {
+            flex-grow: 1;
+            flex-basis: 0;
+            max-width: 200px;
             background: #ef8e3e;
             margin: 10px;
             padding: 10px;
+            height: 18px; // empty phrases
+            position: relative;
 
             &:empty {
                 display: none;
             }
 
-            .phrase {
-                height: 18px; // empty phrases
-                position: relative;
+            span {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
 
-                span {
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                i {
-                    cursor: pointer;
-                    position: absolute;
-                    left: -70px;
-                    top: -6px;
-                    font-size: 26px;
-
-                    &.edit {
-                        left: -48px;
-                        font-size: 24px;
-                        color: green;
-                    }
-                }
+            i {
+                left: calc(50% - 11px);
+                top: -45px;
             }
         }
     }
 
-    .delete {
-        color: red;
-        transform: rotate(45deg);
-        font-size: 40px;
+    i {
         cursor: pointer;
-        display: inline-block;
+        position: absolute;
+        font-size: 40px;
+        top: 2px;
+
+        &.delete {
+            color: red;
+            transform: rotate(45deg);
+            left: -65px;
+        }
+
+        &.edit {
+            color: green;
+            left: -25px;
+        }
     }
 }

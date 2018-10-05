@@ -1,7 +1,7 @@
-<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="form" (ngSubmit)="formSubmit.emit(form.value.phrase)">
   <label>
     Phrase:
     <input type="text" formControlName="phrase">
   </label>
-  <button type="submit" [disabled]="!form.valid">{{editing ? 'Edit' : 'Add'}}</button>
+  <button type="submit" [disabled]="!form.valid">Submit</button>
 </form>

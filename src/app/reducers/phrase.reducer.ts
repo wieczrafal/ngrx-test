@@ -1,6 +1,5 @@
-import * as PhraseActions from './../actions/phrase.actions';
-import { PhraseService } from '../services/phrase.service';
 import { IPhraseState } from '../models/phrase-state.interface';
+import * as PhraseActions from './../actions/phrase.actions';
 
 const defaultState: IPhraseState = {
     phrases: []

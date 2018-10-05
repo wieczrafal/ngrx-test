@@ -1,5 +1,8 @@
-<app-phrase-editor></app-phrase-editor>
+<app-phrase-editor #editor (formSubmit)="formSubmit($event)"></app-phrase-editor>
 <div *ngIf="phrasesState$ | async as phrasesState">
-    <app-text-cols [phrases]="phrasesState.phrases"></app-text-cols>
+    <app-text-cols [phrases]="phrasesState.phrases"
+                   (deleteRow)="deleteRow($event)"
+                   (deleteColumn)="deleteColumn($event)"
+                   (editRow)="editRow($event)"></app-text-cols>
     <app-statistics [phrases]="phrasesState.phrases"></app-statistics>
 </div>
