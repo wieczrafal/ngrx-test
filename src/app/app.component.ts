@@ -42,7 +42,7 @@ export class AppComponent {
       this._store.dispatch(new PhraseActions.AddPhrase(intercepted));
     }
 
-    this.editor.resetForm();
+    this.reset();
   }
 
   public editRow(index: number): void {
